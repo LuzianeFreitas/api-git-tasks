@@ -1,7 +1,7 @@
 module.exports = {
     Query: {
-        user(_, { login }) {
-            return { login }
+        async user(_, { login }, { dataSources }) {
+            return await dataSources.gitHubService.getUser(login)
         }
     }
 }
