@@ -16,4 +16,5 @@ type Query {
 type Mutation {
     createTask(data: TaskInput): Task
     deleteTask(id: Int): Boolean
+    updateTask(id: Int, data: TaskInput): Task
 }
