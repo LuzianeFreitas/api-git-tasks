@@ -8,9 +8,9 @@ class TasksRegisterService {
     async getTaskById (user_id, id) {
         const task = await db('tasks').where({ id }).first()
 
-        if (task) throw new Error('Tarefa não encontrada!')
+        if (!task) throw new Error('Tarefa não encontrada!')
 
-        if (task.user_id !== user_id) {
+        if (task.user_id != user_id) {
             throw new Error('Você não tem permissão!')
         }
 
@@ -18,7 +18,7 @@ class TasksRegisterService {
     }
 
     async createTask (user_id, data) {
-        return await (await db('tasks').inset({user_id, ...data}).returning('*'))[0]
+        return await (await db('tasks').insert({user_id, ...data}).returning('*'))[0]
     }
 
     async updateTask (user_id, id, data) {

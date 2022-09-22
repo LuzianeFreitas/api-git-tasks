@@ -4,6 +4,16 @@ type Task {
     description: String
 }
 
+input TaskInput {
+    title: String,
+    description: String  
+}
+
 type Query {
     tasks: [Task]
+}
+
+type Mutation {
+    createTask(data: TaskInput): Task
+    deleteTask(id: Int): Boolean
 }
